@@ -298,12 +298,12 @@ def main():
     #parser.add_argument('-test_path', default=None, required=True)
 
     parser.add_argument('-batch_size', type=int, default=90)
-    parser.add_argument('-epoch', type=int, default=150)
+    parser.add_argument('-n_epoch', type=int, default=150)
     parser.add_argument('-lr_mul', type=float, default=1.0)
     parser.add_argument('-d_inner_hid', type=int, default=2048)
     parser.add_argument('-d_k', type=int, default=64)
     parser.add_argument('-d_v', type=int, default=64)
-    parser.add_argument('-d_model', type=int, default=2048)
+    parser.add_argument('-d_model', type=int, default=512)
     parser.add_argument('-d_word_vec', type=int, default=512)
     parser.add_argument('-embs_share_weight', type=bool, default=True)
     parser.add_argument('-max_token_seq_len', type=int, default=300)
@@ -316,6 +316,7 @@ def main():
     #parser.add_argument('-output_path', default=None, required=True)
     parser.add_argument('-seed', type=int, default=123)
     parser.add_argument('-tensorboard_path', default='./runs/asmdepictor')
+    parser.add_argument('-dropout', type=float, default=True)
 
     global opt
     opt = parser.parse_args()
