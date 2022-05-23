@@ -1,0 +1,7 @@
+# ignore txt files
+*.txt
+# ignore tgz files
+*.tgz
+*.param
+*.json
+*.npy
