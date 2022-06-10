@@ -5,3 +5,4 @@
 *.param
 *.json
 *.npy
+*.tar.gz

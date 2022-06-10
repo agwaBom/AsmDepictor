@@ -8,6 +8,9 @@ Ubuntu 20.04.4 LTS
 Python 3.9.12
 Anaconda 4.10.1
 
+The dataset and trained model can be downloaded at
+https://drive.google.com/file/d/1-oMQnmRj7KrsLBRD1QE1xVQqcn8C4Dhv/view?usp=sharing
+
 1. Use command "pip install -r ./requirement.txt" to install dependancy after
 creating conda environment with python 3.9.12.
 
