@@ -8,7 +8,7 @@ import torch
 import json
 import os
 
-os.environ["CUDA_VISIBLE_DEVICES"]="2,3"
+os.environ["CUDA_VISIBLE_DEVICES"]="1"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 max_token_seq_len = 300
 
@@ -72,9 +72,9 @@ def preprocessing(src_file, tgt_file, max_token_seq_len):
     return df
 
 if __name__ == "__main__":
-    train_json_dir = './ours_clean_nero_test/train.json'
-    test_json_dir = './nero_test.json'
-    model_path = './7_0.6048_asmdepictor.param'
+    train_json_dir = './dataset/1_train.json'
+    test_json_dir = './dataset/test_100.json'
+    model_path = './dataset/asmdepictor_pretrained.param'
 
     global tokenize
     tokenize = lambda x : x.split()
@@ -173,9 +173,9 @@ if __name__ == "__main__":
     if not os.path.exists('./predicted_output/'):
         os.makedirs('./predicted_output/')
 
-    with open("./predicted_output/nero_prediction.txt", mode='w', encoding='utf-8') as out:
+    with open("./predicted_output/prediction.txt", mode='w', encoding='utf-8') as out:
         for h in hypothesis_list:
             out.write(h+'\n')
-    with open("./predicted_output/nero_ground_truth.txt", mode='w', encoding='utf-8') as out:
+    with open("./predicted_output/ground_truth.txt", mode='w', encoding='utf-8') as out:
         for r in reference_list:
             out.write(r+'\n')

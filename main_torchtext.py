@@ -9,7 +9,7 @@ import math
 import json
 import random
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]="0,1,2,3"
+os.environ["CUDA_VISIBLE_DEVICES"]="0,1"
 
 # Preprocessing
 import pandas as pd
@@ -209,7 +209,6 @@ def trainIters(model, n_epoch, train_iterator, test_iterator, model_optimizer, s
             writer.add_scalar('Recall', mean_valid_rec, i)
 
             print('loss : ', loss_per_word, 'Jaccard* : ', accuracy, 'F1 : ', mean_valid_f1, 'Precision : ', mean_valid_prec, 'Recall : ', mean_valid_rec)
-            torch.save(model.state_dict(), str(i)+"_"+str(round(mean_valid_f1, 4))+"_asmdepictor.param")
 
             # Random select data in train and check training
             src_rand_train, tgt_rand_train = random_choice_from_train()
@@ -260,7 +259,7 @@ def make_hypothesis_reference(model, test_src, test_tgt, model_type):
 def random_choice_from_train():
     # read json files made from torchtext
     train_data = list()
-    for line in open("./ours_clean_nero_test/valid.json", mode='r', encoding='utf-8'):
+    for line in open("./dataset/valid.json", mode='r', encoding='utf-8'):
         train_data.append(json.loads(line))
 
     train_data = random.choice(train_data)
@@ -315,38 +314,22 @@ if __name__ == '__main__':
     
     writer = SummaryWriter('./runs/train_new_asmdepictor')
 
-    train_src_dir = "./ours_clean_nero_test/train_source.txt"
-    valid_src_dir = "./ours_clean_nero_test/test_source.txt"
-    test_src_dir = "./ours_clean_nero_test/test_source.txt"
+    train_src_dir = "./dataset/train_source.txt"
+    valid_src_dir = "./dataset/test_source.txt"
+    test_src_dir = "./dataset/test_source.txt"
 
-    train_tgt_dir = "./ours_clean_nero_test/train_target.txt"
-    valid_tgt_dir = "./ours_clean_nero_test/test_target.txt"
-    test_tgt_dir = "./ours_clean_nero_test/test_target.txt"
+    train_tgt_dir = "./dataset/train_target.txt"
+    valid_tgt_dir = "./dataset/test_target.txt"
+    test_tgt_dir = "./dataset/test_target.txt"
 
     train_set = preprocessing(train_src_dir, train_tgt_dir, max_token_seq_len)
     valid_set = preprocessing(valid_src_dir, valid_tgt_dir, max_token_seq_len)
     test_set = preprocessing(test_src_dir, test_tgt_dir, max_token_seq_len)
 
-    train_set.to_json('ours_clean_nero_test/train.json', orient='records', lines=True)
-    valid_set.to_json('ours_clean_nero_test/valid.json', orient='records', lines=True)
-    test_set.to_json('ours_clean_nero_test/test.json', orient='records', lines=True)
-    '''
-    #train_src_dir = "./train_source.txt"
-    #valid_src_dir = "./test_source.txt"
-    test_src_dir = "./bpe_nero_test_source.txt"
+    train_set.to_json('dataset/train.json', orient='records', lines=True)
+    valid_set.to_json('dataset/valid.json', orient='records', lines=True)
+    test_set.to_json('dataset/test.json', orient='records', lines=True)
 
-    #train_tgt_dir = "./train_target.txt"
-    #valid_tgt_dir = "./test_target.txt"
-    test_tgt_dir = "./nero_test_target.txt"
-
-    #train_set = preprocessing(train_src_dir, train_tgt_dir, max_token_seq_len)
-    #valid_set = preprocessing(valid_src_dir, valid_tgt_dir, max_token_seq_len)
-    test_set = preprocessing(test_src_dir, test_tgt_dir, max_token_seq_len)
-
-    #train_set.to_json('ours_clean_nero_test/train.json', orient='records', lines=True)
-    #valid_set.to_json('ours_clean_nero_test/valid.json', orient='records', lines=True)
-    test_set.to_json('./nero_test.json', orient='records', lines=True)
-    '''
     ## tokenize
     global tokenize
     tokenize = lambda x : x.split()
@@ -370,9 +353,9 @@ if __name__ == '__main__':
     fields = {'Code' : ('code', code), 'Text' : ('text', text)}
 
     train_data, valid_data, test_data = TabularDataset.splits(path='',
-                                                train='./ours_clean_nero_test/train.json',
-                                                test='./ours_clean_nero_test/test.json',
-                                                validation='./ours_clean_nero_test/valid.json',
+                                                train='./dataset/train.json',
+                                                test='./dataset/test.json',
+                                                validation='./dataset/valid.json',
                                                 format='json',
                                                 fields=fields)
 
@@ -420,7 +403,7 @@ if __name__ == '__main__':
 
     # read json files made from torchtext
     test_data = list()
-    for line in open("./ours_clean_nero_test/test.json", mode='r', encoding='utf-8'):
+    for line in open("./dataset/test.json", mode='r', encoding='utf-8'):
         test_data.append(json.loads(line))
 
     test_src = list()
