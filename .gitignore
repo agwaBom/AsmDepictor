@@ -1,5 +1,6 @@
 # ignore txt files
-*.txt
+/dataset/*.txt
+/predicted_output/*.txt
 # ignore tgz files
 *.tgz
 *.param
