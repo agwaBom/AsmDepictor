@@ -4,13 +4,13 @@ This project has been experimented on the following specification.
 
 ```
 Intel(R) Xeon(R) Gold 5218R CPU @ 2.10GHz
-NVIDIA RTX A6000 (about 49 GB of VRAM)
+NVIDIA RTX A6000 (48 GB VRAM)
 Ubuntu 20.04.4 LTS
 Python 3.9.12
 Anaconda 4.10.1
 ```
 
-1. Install all dependent libraries with the Conda environment (python 3.9.12).
+1. Install all dependent libraries with the Conda environment.
 ```
 pip install -r requirement.txt
 ```
