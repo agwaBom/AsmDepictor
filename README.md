@@ -43,7 +43,8 @@ python ./learn_model_from_scratch.py
 ```
 
 5. Our dataset and pre-trained model can be downloaded 
-at https://drive.google.com/file/d/1-oMQnmRj7KrsLBRD1QE1xVQqcn8C4Dhv/view?usp=sharing.
+at https://zenodo.org/record/7978756
+
 
 # Hyperparameter
 
@@ -66,6 +67,10 @@ at https://drive.google.com/file/d/1-oMQnmRj7KrsLBRD1QE1xVQqcn8C4Dhv/view?usp=sh
 | **Multiplication factor**      | **0.8**             | **1.0**             |
 | **Warmup steps**               | **24,000**          | **18,000**          |
 | **Number of parameters**       | **32,251,910**      | **40,004,102**      |
+
+# Hyperparameter setting guide for your own dataset
+I strongly recommend reading https://github.com/jadore801120/attention-is-all-you-need-pytorch/pull/168
+to fit with your own data
 
 # Performance
 - We gained a meaningful amount of performance gain after publishing our paper. We denote our updated performance evaluation for future research.
@@ -94,4 +99,3 @@ Figure 4. Performance graph of AsmDepictor (Lowest Loss: 1.523)
 ----
 # To-do
 1. Add binary preprocessing (IDA Scripts)
-2. Update dataset and model download link
