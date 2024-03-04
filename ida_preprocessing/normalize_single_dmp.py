@@ -820,6 +820,6 @@ if __name__ == '__main__':
 
     learning_data = nn.generate_learning_data()
 
-    with open("./dmp_gz_data/gcc-5__Ou__mtools__mkmanifest.txt", mode="w", encoding="utf-8") as out:
+    with open("./dmp_gz_data/gcc-5__Ou__direvent__direvent.txt", mode="w", encoding="utf-8") as out:
         out.write(learning_data[1])
 

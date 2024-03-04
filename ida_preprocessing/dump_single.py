@@ -1,7 +1,7 @@
 import os, sys
 import logging
 import subprocess
- 
+
 def call_ida(input_file, ida_path=None):
     """
     :param input_file:
@@ -16,7 +16,7 @@ def call_ida(input_file, ida_path=None):
 
     # Check if IDA Pro has been installed in Windows
     if _check_ida() or ida_path:
-        script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dmp.py")
+        script = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ida.py")
         if not os.path.exists(script):
             logging.error("Error: could not find ida.py (%s)" % script)
             sys.exit(1)
